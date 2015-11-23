@@ -1,6 +1,8 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  *
@@ -11,6 +13,7 @@ public class Bank {
     private String name;
     private ArrayList<Customer> listCustomer;
     private ArrayList<Account> listAccount;
+    private Map<Integer, Customer> customers;
     
     public Bank(int number, String name){
         this.number = number;
@@ -32,6 +35,16 @@ public class Bank {
         Customer customer = listCustomer.get(number);
         
         return customer;
+    }
+    
+    public Map<Integer, Customer> getCustomers () { 
+        int number = 0;
+        for(Customer cust : listCustomer){
+            number = number +1; 
+            customers.put(number, cust);
+         }
+        
+        return customers;
     }
     
     public void addCustomer (int number, String fn, String ln){
