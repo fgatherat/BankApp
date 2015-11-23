@@ -47,10 +47,12 @@ public class Bank {
         return customers;
     }
     
-    public void addCustomer (int number, String fn, String ln){
+    public Customer addCustomer (int number, String fn, String ln){
         Customer customer = new Customer (number, fn, ln);
         
         listCustomer.add(customer);
+        
+        return customer;
     }
     
     public void addAccount (String number, String name, double rate, Customer customer) {
