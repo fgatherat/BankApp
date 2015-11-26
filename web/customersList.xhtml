@@ -19,7 +19,14 @@ and open the template in the editor.
         
         
             <h:form>
-                <h:dataTable id="zghg" var="customer" value="#{customerLISBean.customersDM}">
+                <h:dataTable id="listeClient" var="customer" value="#{customerLISBean.customersDM}">
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg.numero}" />
+                        </f:facet>
+                        <h:outputText id="numero" value="#{customer.number}"/>
+                    </h:column>
                     
                     <h:column>
                         <f:facet name="header">
@@ -36,6 +43,7 @@ and open the template in the editor.
                     </h:column>
                     
                 </h:dataTable>
+                <br></br>
                 <h:commandButton id="addCustomer" value="#{msg.addClient}" action="#{CustomerADDBean.add}"/>
             </h:form>
        
