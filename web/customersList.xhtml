@@ -6,12 +6,39 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <f:view>
     <h:head>
-        <title>Liste des clients de la banque</title>
+        <title>Bank App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        <div>TODO write content</div>
+        <h1>Liste des clients de la banque : </h1>
+        
+        
+            <h:form>
+                <h:dataTable id="zghg" var="customer" value="#{customerLISBean.customersDM}">
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nom" />
+                        </f:facet>
+                        <h:outputText id="firstname" value="#{customer.firstName}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prénom" />
+                        </f:facet>
+                        <h:outputText id="lastname" value="#{customer.lastName}"/>
+                    </h:column>
+                    
+                </h:dataTable>
+                <h:commandButton id="addCustomer" value="Ajouter client" action="#{CustomerADDBean.add}"/>
+            </h:form>
+       
+        
     </h:body>
+  </f:view>
 </html>

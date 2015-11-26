@@ -1,6 +1,7 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -13,7 +14,6 @@ public class Bank {
     private String name;
     private ArrayList<Customer> listCustomer;
     private ArrayList<Account> listAccount;
-    private Map<Integer, Customer> customers;
     
     public Bank(int number, String name){
         this.number = number;
@@ -37,17 +37,7 @@ public class Bank {
         return customer;
     }
     
-    public Map<Integer, Customer> getCustomers () { 
-        int number = 0;
-        for(Customer cust : listCustomer){
-            number = number +1; 
-            customers.put(number, cust);
-         }
-        
-        return customers;
-    }
-    
-    public Customer addCustomer (int number, String fn, String ln){
+    public Customer addCustomer(int number, String fn, String ln){
         Customer customer = new Customer (number, fn, ln);
         
         listCustomer.add(customer);
@@ -60,4 +50,15 @@ public class Bank {
         
         listAccount.add(account);
     }
+    
+    public Map<Integer, Customer> getCustomers(){
+       Map<Integer, Customer> backList = new HashMap<>();       
+       
+       for(Customer c : listCustomer) {
+           backList.put(c.getNumber(), c);
+       }
+       
+        return backList;
+    }
+        
 }

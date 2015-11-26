@@ -1,7 +1,6 @@
 package service;
 
-import business.Bank;
-import business.Customer;
+import business.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

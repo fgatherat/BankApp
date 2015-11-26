@@ -7,6 +7,7 @@ package bankApp;
 
 import business.Bank;
 import business.Customer;
+import service.Services;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Application {
      */
     public static void main(String[] args) {
         
-        Bank bank = new Bank(1, "BCJ");
+       /* Bank bank = new Bank(1, "BCJ");
         bank.addCustomer(1, "francois", "gatherat");
         bank.addCustomer(2,"yannick", "galvanetto");
         
@@ -34,7 +35,8 @@ public class Application {
         bank.getAccountByNumber("123").credit(200);
         
         System.out.println(bank.getAccountByNumber("456").getBalance());
-        System.out.println(bank.getAccountByNumber("123").getCustomer().getLastname());
+        System.out.println(bank.getAccountByNumber("123").getCustomer().getLastname());*/
+        
+       // Services service = new Services();
     }
-    
 }
