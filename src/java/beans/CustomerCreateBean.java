@@ -27,7 +27,7 @@ public class CustomerCreateBean implements Serializable {
     private String lastName;
     private String firstName;
         
-    private Customer cust = new Customer();
+    private Customer cust;
     
     @Inject Services services;
     public CustomerCreateBean(){
@@ -67,11 +67,17 @@ public class CustomerCreateBean implements Serializable {
     }
     
     public String add(){
+        cust = new Customer();
+        services.saveCustomer(cust.getNumber(), cust.getFirstName(), cust.getLastName());
+       
+       
         return "createCustomer";
     }
     
     public void addCustomer(int number, String fn, String ln){
-        services.saveCustomer(number, fn, ln);
+        cust = new Customer(number, fn, ln);
+        
+        services.saveCustomer(cust.getNumber(), cust.getFirstName(), cust.getLastName());
     }
     
 }
