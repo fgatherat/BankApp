@@ -27,7 +27,7 @@ and open the template in the editor.
                 <h:inputText id="nom" value="#{customerBean.lastName}" required="true" requiredMessage="#{msg['entrerNom']}" />
                 <br></br> 
                 <br></br>
-                <h:commandButton id="btAdd" type="submit" value="Ajouter le client" action="createCustomerOk"/>
+                <h:commandButton id="btAdd" type="submit" value="Ajouter le client" action="#{customerBean.add}"/>
                 <h:commandButton id="btRenit" type="submit" value="Renitialiser" action="renitialiserAjout"/>
                 <br></br>
                 <br></br>
