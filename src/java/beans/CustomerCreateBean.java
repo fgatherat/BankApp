@@ -67,11 +67,11 @@ public class CustomerCreateBean implements Serializable {
     }
     
     public String add(){
-        //cust = new Customer(number, fn, ln);
-        //cust = new Customer(); 
-        
-        //services.saveCustomer(cust.getNumber(), cust.getFirstName(), cust.getLastName());
         return "createCustomer";
+    }
+    
+    public void addCustomer(int number, String fn, String ln){
+        services.saveCustomer(number, fn, ln);
     }
     
 }

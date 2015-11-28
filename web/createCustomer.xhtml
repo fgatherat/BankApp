@@ -14,17 +14,22 @@ and open the template in the editor.
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         </h:head>
         <h:body>
-            <h1>#{msg["accueil"]} </h1>
+            <h1>#{msg['titreAddClient']} </h1>
             
-            <h:dataTable id="addt" var="cust" value="#{customerBean.cust}">
-                
-                <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Test" />
-                        </f:facet>
-                        <h:outputText id="numero" value="helloworld"/>
-                    </h:column>
-                </h:dataTable>
+            <h:form>
+                <h:outputText value="#{msg['numero']}" />
+                <h:inputText id="numero" value="#{customerBean.number}" />
+                <br></br>  
+                <h:outputText value="#{msg['prenom']}" />
+                <h:inputText id="prenom" value="#{customerBean.firstName}" />
+                <br></br> 
+                <h:outputText value="#{msg['nom']}" />
+                <h:inputText id="nom" value="#{customerBean.lastName}" />
+                <br></br> 
+                <h:commandButton id="btAdd" type="submit" value="Ajouter le client" action="#{customerBean.addCustomer(number, fn, ln)}"/>
+                <h:commandButton id="btAnnuler" type="submit" value="Annuler" action="annulerAjout"/>
+                <h:commandButton id="btRenit" type="submit" value="Renitialiser" action="renitialiserAjout"/>
+            </h:form>
         </h:body>
    </f:view>
 </html>
