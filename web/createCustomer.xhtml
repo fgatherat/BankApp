@@ -17,21 +17,21 @@ and open the template in the editor.
             <h1>#{msg['titreAddClient']} </h1>
             
             <h:form>
-                <h:outputText value="#{msg['numero']}" />
+                <h:outputText value="#{msg['numero']} : " />
                 <h:inputText id="numero" value="#{customerBean.number}" required="true" requiredMessage="#{msg['entrerNum']}" />
                 <br></br>  
-                <h:outputText value="#{msg['prenom']}" />
+                <h:outputText value="#{msg['prenom']} : " />
                 <h:inputText id="prenom" value="#{customerBean.firstName}" required="true" requiredMessage="#{msg['entrerPrenom']}"/>
                 <br></br> 
-                <h:outputText value="#{msg['nom']}" />
+                <h:outputText value="#{msg['nom']} : " />
                 <h:inputText id="nom" value="#{customerBean.lastName}" required="true" requiredMessage="#{msg['entrerNom']}" />
                 <br></br> 
                 <br></br>
-                <h:commandButton id="btAdd" type="submit" value="Ajouter le client" action="#{customerBean.add}"/>
-                <h:commandButton id="btRenit" type="submit" value="Renitialiser" action="renitialiserAjout"/>
+                <h:commandButton id="btAdd" type="submit" value="#{msg['btAddClient']}" action="#{customerBean.add}"/>
+                <h:commandButton id="btRenit" type="submit" value="#{msg['btRenit']}" action="renitialiserAjout"/>
                 <br></br>
                 <br></br>
-                <h:commandButton id="btAnnuler" type="submit" value="Annuler" action="annulerAjout"/>
+                <h:commandButton id="btAnnuler" type="submit" value="#{msg['btAnnuler']}" action="annulerAjout"/>
             </h:form>
         </h:body>
    </f:view>
