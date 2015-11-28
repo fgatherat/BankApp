@@ -30,21 +30,21 @@ and open the template in the editor.
                     
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{msg.nom}" />
+                            <h:outputText value="#{msg.prenom}" />
                         </f:facet>
                         <h:outputText id="firstname" value="#{customer.firstName}"/>
                     </h:column>
                     
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{msg.prenom}" />
+                            <h:outputText value="#{msg.nom}" />
                         </f:facet>
                         <h:outputText id="lastname" value="#{customer.lastName}"/>
                     </h:column>
                     
                 </h:dataTable>
                 <br></br>
-                <h:commandButton id="addCustomer" value="#{msg.addClient}" action="#{CustomerADDBean.add}"/>
+                <h:commandButton id="addCustomer" value="#{msg.addClient}" action="#{customerBean.add}"/>
             </h:form>
        
         

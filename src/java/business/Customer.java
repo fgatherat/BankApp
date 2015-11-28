@@ -10,7 +10,8 @@ public class Customer {
     private String firstName;
     private String lastName;
 
-
+    public Customer (){}
+    
     public Customer(int number, String firstName, String lastName) {
         this.number = number;
         this.firstName = firstName;
