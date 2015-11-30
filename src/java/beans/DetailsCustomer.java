@@ -1,4 +1,5 @@
 
+import business.Account;
 import business.Customer;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -30,6 +31,8 @@ public class DetailsCustomer implements Serializable {
     private String firstName;
 
     private Customer cust;
+    
+    private DataModel<Account> accountsDM;
     
     @Inject Services services;
     public DetailsCustomer() {
@@ -67,5 +70,11 @@ public class DetailsCustomer implements Serializable {
         setNumber(cust.getNumber());
         setFirstName(cust.getFirstName());
         setLastName(cust.getLastName());
+    }
+    
+    public DataModel<Account> getAccountDM() {
+        accountsDM = new ListDataModel<>();
+        accountsDM.setWrappedData(services.getAccountByCustomer());
+        return accountsDM;
     }
 }

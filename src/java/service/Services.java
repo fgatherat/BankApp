@@ -69,6 +69,14 @@ public class Services implements Serializable{
         return new ArrayList(getCustomers().values());
     }
     
+    public List<Account> getAccountByCustomer () {
+        List account = new ArrayList<>();
+        int numberCustomer = returnClientEdit().getNumber();
+        account = bank.getAccountByCustomer(numberCustomer);
+        
+        return account;
+    }
+    
     public void clientEdit (Customer cust){
         clientEdit = new Customer(cust.getNumber(), cust.getFirstName(), cust.getLastName());
     }
@@ -76,4 +84,6 @@ public class Services implements Serializable{
     public Customer returnClientEdit () {
         return clientEdit;
     }
+    
+    
 }

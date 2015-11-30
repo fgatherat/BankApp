@@ -27,6 +27,36 @@ and open the template in the editor.
             <h:outputText value="#{detailsClient.firstName}" />
         </h:panelGrid>
         
+        
+         <h:form>
+             <h:dataTable id="listeCompte" var="compte" value="#{detailsClient.accountDM}">
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['numero']}" />
+                        </f:facet>
+                        <h:outputText id="numero" value="#{compte.number}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['nomCompte']}" />
+                        </f:facet>
+                        <h:outputText id="nom" value="#{compte.name}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['balance']}" />
+                        </f:facet>
+                        <h:outputText id="balance" value="#{compte.balance}" />
+                    </h:column>
+                    
+                </h:dataTable>
+                <br></br>
+                <h:commandButton id="retourAcceuil" value="#{msg['lienRetourAcceuil']}" action="retourAcceuil" />
+            </h:form>
+        
     </h:body>
   </f:view>
 </html>
