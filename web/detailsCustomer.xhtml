@@ -45,11 +45,18 @@ and open the template in the editor.
                         <h:outputText id="nom" value="#{compte.name}"/>
                     </h:column>
                     
-                    <h:column>
+                 <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['balance']}" />
                         </f:facet>
-                        <h:outputText id="balance" value="#{compte.balance}" />
+                     <h:outputText id="balance" value="#{compte.balance}" />
+                    </h:column>
+                 
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['taux']}" />
+                        </f:facet>
+                        <h:outputText id="taux" value="#{compte.rate}" />
                     </h:column>
                     
                 </h:dataTable>
