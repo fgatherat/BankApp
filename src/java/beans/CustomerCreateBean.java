@@ -59,9 +59,14 @@ public class CustomerCreateBean implements Serializable {
     }
     
     public String add(){
-        services.saveCustomer(number, firstName, lastName);
+        try {
+           services.saveCustomer(number, firstName, lastName);
         
-        return "createCustomerOk";
+            return "success"; 
+        }catch (Exception e ) {
+            return "error";
+        }
+        
     }
     
 }
