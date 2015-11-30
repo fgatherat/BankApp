@@ -6,7 +6,9 @@
 
 package beans;
 
+import business.Account;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -59,5 +61,13 @@ public class DetailsCompteBean implements Serializable{
         this.rate = rate;
     }
     
+    @PostConstruct
+    public void detailCompte () {
+        Account compte = services.returnCompteEdit();
+        setNumber(compte.getNumber());
+        setName(compte.getName());
+        setBalance(compte.getBalance());
+        setRate(compte.getRate());
+    }
     
 }

@@ -29,6 +29,10 @@ and open the template in the editor.
             <h:outputText value="#{detailsCompte.rate}" />
         </h:panelGrid>
         
+        <h:form>
+            <h:commandButton id="retourClient" value="#{msg['lienRetourClient']}" action="retourClientDetails" />
+            <h:commandButton id="retourAcceuil" value="#{msg['lienRetourAcceuil']}" action="retourAcceuil" />
+        </h:form>
     </h:body>
   </f:view>
 </html>

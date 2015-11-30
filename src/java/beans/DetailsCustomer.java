@@ -77,4 +77,11 @@ public class DetailsCustomer implements Serializable {
         accountsDM.setWrappedData(services.getAccountByCustomer());
         return accountsDM;
     }
+    
+    public String detailsCompte (Account compte){
+        
+        services.compteEdit(cust, compte);
+        
+        return "detailsDuCompte";
+    }
 }

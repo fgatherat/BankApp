@@ -19,6 +19,7 @@ public class Services implements Serializable{
     
     private Bank bank;
     Customer clientEdit;
+    Account compteEdit;
     
     public Services(){
         bank = new Bank(1, "Raiffeisen Neuchâtel");
@@ -85,5 +86,12 @@ public class Services implements Serializable{
         return clientEdit;
     }
     
+    public void compteEdit (Customer cust, Account compte) {
+        compteEdit = new Account(cust, compte.getNumber(), compte.getName(), compte.getRate());
+    }
+    
+    public Account returnCompteEdit () {
+        return compteEdit;
+    }
     
 }

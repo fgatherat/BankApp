@@ -42,7 +42,7 @@ and open the template in the editor.
                         <f:facet name="header">
                             <h:outputText value="#{msg['nomCompte']}" />
                         </f:facet>
-                        <h:outputText id="nom" value="#{compte.name}"/>
+                        <h:commandLink id="name" value="#{compte.name}" action="#{detailsClient.detailsCompte(detailsClient.number, compte.number)}" />
                     </h:column>
                     
                  <h:column>
