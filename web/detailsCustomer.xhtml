@@ -18,30 +18,14 @@ and open the template in the editor.
     <h:body>
         <h1>#{msg['accueil']} </h1>
         
-         <h:form>
-             <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['numero']}" />
-                        </f:facet>
-                        <h:outputText id="numero" value="#{detailsClient.number}"/>
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['prenom']}" />
-                        </f:facet>
-                        <h:outputText id="firstname" value="#{detailsClient.firstName}"/>
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['nom']}" />
-                        </f:facet>
-                        <h:commandLink id="lastname" value="#{detailsClient.lastName}" action="coucou" />
-                    </h:column>
-             
-                <br></br>
-            </h:form>
+        <h:panelGrid border="1" columns="2" >
+            <h:outputLabel value="#{msg['numero']}" />
+            <h:outputText value="#{detailsClient.number}" />
+            <h:outputLabel value="#{msg['nom']}" />
+            <h:outputText value="#{detailsClient.lastName}" />
+            <h:outputLabel value="#{msg['prenom']}" />
+            <h:outputText value="#{detailsClient.firstName}" />
+        </h:panelGrid>
         
     </h:body>
   </f:view>

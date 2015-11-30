@@ -18,6 +18,7 @@ import javax.enterprise.context.SessionScoped;
 public class Services implements Serializable{
     
     private Bank bank;
+    Customer clientEdit;
     
     public Services(){
         bank = new Bank(1, "Raiffeisen Neuchâtel");
@@ -66,5 +67,13 @@ public class Services implements Serializable{
      */
     public List<Customer> getCustomersList(){
         return new ArrayList(getCustomers().values());
+    }
+    
+    public void clientEdit (Customer cust){
+        clientEdit = new Customer(cust.getNumber(), cust.getFirstName(), cust.getLastName());
+    }
+    
+    public Customer returnClientEdit () {
+        return new Customer(8, "hbjhb", "hdbcjhsb");
     }
 }

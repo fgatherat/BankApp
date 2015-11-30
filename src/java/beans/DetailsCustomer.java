@@ -26,10 +26,8 @@ public class DetailsCustomer implements Serializable {
     private int number;
     private String lastName;
     private String firstName;
-    
-    //private DataModel<Customer> customerDM;
 
-    Customer cust;
+    private Customer cust;
     
     @Inject Services services;
     public DetailsCustomer() {
@@ -60,14 +58,14 @@ public class DetailsCustomer implements Serializable {
         this.firstName = firstName;
     }
     
-    public String detailCust () {
-        cust = new Customer(getNumber(), getFirstName(), getLastName());
-        return "detailsDuClient";
-    }
+    public Customer detailCust () {
+        Customer clientEdit = services.returnClientEdit();
+        cust = new Customer(clientEdit.getNumber(), clientEdit.getFirstName(), clientEdit.getLastName());
+        //cust = new Customer(8, "jhbjh", "jhbjl");
+        /*setNumber(cust.getNumber());
+        setFirstName(cust.getFirstName());
+        setLastName(cust.getLastName());*/
         
-   /* public DataModel<Customer> getCustomer (){
-        customerDM = new ListDataModel<>();
-        customerDM.setWrappedData(services.getCustomer());
-        return customerDM;
-    }*/
+        return cust;
+    }
 }
