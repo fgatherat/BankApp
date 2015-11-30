@@ -74,6 +74,6 @@ public class Services implements Serializable{
     }
     
     public Customer returnClientEdit () {
-        return new Customer(8, "hbjhb", "hdbcjhsb");
+        return clientEdit;
     }
 }

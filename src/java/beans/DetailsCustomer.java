@@ -1,7 +1,9 @@
 
 import business.Customer;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
@@ -20,7 +22,7 @@ import service.Services;
  */
 
 @Named(value="detailsClient")
-@RequestScoped
+@SessionScoped
 public class DetailsCustomer implements Serializable {
     
     private int number;
@@ -58,14 +60,12 @@ public class DetailsCustomer implements Serializable {
         this.firstName = firstName;
     }
     
-    public Customer detailCust () {
+    @PostConstruct
+    public void detailCust () {
         Customer clientEdit = services.returnClientEdit();
         cust = new Customer(clientEdit.getNumber(), clientEdit.getFirstName(), clientEdit.getLastName());
-        //cust = new Customer(8, "jhbjh", "jhbjl");
-        /*setNumber(cust.getNumber());
+        setNumber(cust.getNumber());
         setFirstName(cust.getFirstName());
-        setLastName(cust.getLastName());*/
-        
-        return cust;
+        setLastName(cust.getLastName());
     }
 }
