@@ -12,16 +12,90 @@
 <!-- Ajout de la langue par défaut et des langues supportées -->
        <locale-config>
              <default-locale>en</default-locale>
-             <supported-locale>fr</supported-locale>
              <supported-locale>en</supported-locale>
        </locale-config>
        
        <navigation-rule>
            <from-view-id>/customersList.xhtml</from-view-id>
            <navigation-case>
-               <from-action>${customerCreateBean.add}</from-action>
                <from-outcome>createCustomer</from-outcome>
                <to-view-id>/createCustomer.xhtml</to-view-id>
+           </navigation-case>
+       </navigation-rule>
+       
+       <navigation-rule>
+           <from-view-id>/createCustomer.xhtml</from-view-id>
+           <navigation-case>
+               <from-outcome>annulerAjout</from-outcome>
+               <to-view-id>/customersList.xhtml</to-view-id>
+           </navigation-case>
+       </navigation-rule>
+       
+       <navigation-rule>
+           <from-view-id>/createCustomer.xhtml</from-view-id>
+           <navigation-case>
+               <from-outcome>renitialiserAjout</from-outcome>
+               <to-view-id>/createCustomer.xhtml</to-view-id>
+           </navigation-case>
+       </navigation-rule>
+       
+       <navigation-rule>
+           <from-view-id>/createCustomer.xhtml</from-view-id>
+           <navigation-case>
+               <from-outcome>success</from-outcome>
+               <to-view-id>/createCustomerOK.xhtml</to-view-id>
+           </navigation-case>
+           <navigation-case>
+               <from-outcome>error</from-outcome>
+               <to-view-id>/createCustomerError.xhtml</to-view-id>
+           </navigation-case>
+       </navigation-rule>
+       
+       <navigation-rule>
+           <from-view-id>/createCustomerOK.xhtml</from-view-id>
+           <navigation-case>
+               <from-outcome>retourAcceuil</from-outcome>
+               <to-view-id>/customersList.xhtml</to-view-id>
+           </navigation-case>
+       </navigation-rule>
+       
+       <navigation-rule>
+           <from-view-id>/customersList.xhtml</from-view-id>
+           <navigation-case>
+               <from-outcome>detailsDuClient</from-outcome>
+               <to-view-id>/detailsCustomer.xhtml</to-view-id>
+           </navigation-case>
+       </navigation-rule>
+       
+       <navigation-rule>
+           <from-view-id>/detailsCustomer.xhtml</from-view-id>
+           <navigation-case>
+               <from-outcome>retourAcceuil</from-outcome>
+               <to-view-id>/customersList.xhtml</to-view-id>
+           </navigation-case>
+       </navigation-rule>
+       
+       <navigation-rule>
+           <from-view-id>/detailsCustomer.xhtml</from-view-id>
+           <navigation-case>
+               <from-outcome>detailsDuCompte</from-outcome>
+               <to-view-id>/detailsCompte.xhtml</to-view-id>
+           </navigation-case>
+       </navigation-rule>
+       
+       <navigation-rule>
+           <from-view-id>/detailsCompte.xhtml</from-view-id>
+           <navigation-case>
+               <from-outcome>retourClientDetails</from-outcome>
+               <to-view-id>/detailsCustomer.xhtml</to-view-id>
+           </navigation-case>
+       </navigation-rule>
+       
+       <navigation-rule>
+           <from-view-id>/detailsCompte.xhtml</from-view-id>
+           <navigation-case>
+               <from-outcome>retourAcceuil</from-outcome>
+               <to-view-id>/customersList.xhtml</to-view-id>
            </navigation-case>
        </navigation-rule>
        
