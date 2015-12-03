@@ -2,6 +2,8 @@
 import business.Account;
 import business.Customer;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
@@ -26,11 +28,7 @@ import service.Services;
 @SessionScoped
 public class DetailsCustomer implements Serializable {
     
-    private int number;
-    private String lastName;
-    private String firstName;
-
-    private Customer cust;
+    private Customer customer;
     
     private DataModel<Account> accountsDM;
     
@@ -39,49 +37,29 @@ public class DetailsCustomer implements Serializable {
         
     }
     
-    public int getNumber() {
-        return number;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String showCustomer(Customer cust){
+        if(cust != null){
+            customer = cust;
+            return "show";
+        }else{
+            customer = null;
+            return "error";
+        }
     }
     
-    @PostConstruct
-    public void detailCust () {
-        Customer clientEdit = services.returnClientEdit();
-        cust = new Customer(clientEdit.getNumber(), clientEdit.getFirstName(), clientEdit.getLastName());
-        setNumber(cust.getNumber());
-        setFirstName(cust.getFirstName());
-        setLastName(cust.getLastName());
-    }
-    
-    public DataModel<Account> getAccountDM() {
-        accountsDM = new ListDataModel<>();
-        accountsDM.setWrappedData(services.getAccountByCustomer());
-        return accountsDM;
-    }
-    
-    public String detailsCompte (Account compte){
+    public List<Account> getAccounts(){
+        if(customer == null){
+            return new ArrayList();
+        }
         
-        services.compteEdit(cust, compte);
-        
-        return "detailsDuCompte";
+        return new ArrayList(customer.getAccounts().values());
     }
 }

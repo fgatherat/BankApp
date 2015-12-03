@@ -23,22 +23,20 @@ import service.Services;
 @RequestScoped
 public class CustomerCreateBean implements Serializable {
     
-    private int number;
+    private Integer number;
     private String lastName;
     private String firstName;
-        
-    //private Customer cust;
     
     @Inject Services services;
     public CustomerCreateBean(){
     
     }
     
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

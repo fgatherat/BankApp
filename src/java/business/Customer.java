@@ -1,53 +1,58 @@
 package business;
 
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Customer {
+public class Customer implements Serializable {
 
-    private Collection<Account> accounts;
+    private Map<String, Account> accounts;
     private int number;
     private String firstName;
     private String lastName;
 
-    public Customer (){}
-    
-    public Customer(int number, String firstName, String lastName) {
+    /**
+     * Constructeur paramétré pour la classe Customer. Obligatoire. Représente
+     * un client de la banque
+     *
+     * @param number Le numéro unique d'identification du client
+     * @param fn Le prénom du client
+     * @param ln Le nom de famille du client
+     */
+    public Customer(Integer number, String fn, String ln) {
         this.number = number;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.accounts = new ArrayList<Account>();
+        this.firstName = fn;
+        this.lastName = ln;
+        accounts = new HashMap();
     }
 
+    /**
+     * Retourne le compte correspondant au numéro passé en paramètre, ou null si
+     * aucun compte ne correspond.
+     *
+     * @param number Le numéro du compte à rechercher
+     * @return Le compte recherché, ou null si aucun compte ne correspond
+     */
     public Account getAccountByNumber(String number) {
-        for (Account compte : accounts) {
-            if (compte.getNumber() == number) {
-                return compte;
-            }   
-        }
-        return null;
-    }
-  
-    public void addAccount(String number, String name, double rate) {
-        Account compte = new Account(this, number, name);
-        compte.setRate(rate);
-        accounts.add(compte);
-    }
-    
-    public String getLastname() {
-        return lastName;
+        return accounts.get(number);
     }
 
-    public Collection<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Collection<Account> accounts) {
-        this.accounts = accounts;
+    /**
+     * Méthode qui ajoute un compte au client
+     *
+     * @param number Le numéro du compte
+     * @param name Le libellé du compte
+     * @param rate Le taux d'intérêt du compte
+     * @return Le compte qui a été créé
+     */
+    public Account addAccount(String number, String name, double rate) {
+        Account acc = new Account(number, name, rate, this);
+        this.accounts.put(number, acc);
+        return acc;
     }
 
     public int getNumber() {
-        return number;
+        return this.number;
     }
 
     public void setNumber(int number) {
@@ -55,7 +60,7 @@ public class Customer {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -63,13 +68,15 @@ public class Customer {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
-    
+
+    public Map<String, Account> getAccounts() {
+        return accounts;
+    }
 
 }

@@ -38,12 +38,4 @@ public class CustomerLISBean implements Serializable {
         customersDM.setWrappedData(services.getCustomersList());
         return customersDM;
     }
-    
-    
-    public String detailsCustomer (Customer cust){
-        
-        services.clientEdit(cust);
-        
-        return "detailsDuClient";
-    }
 }

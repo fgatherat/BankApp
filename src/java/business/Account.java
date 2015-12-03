@@ -1,81 +1,86 @@
 package business;
 
-public class Account {
+import java.io.Serializable;
 
-    private Customer customer;
-    private String number;
-    private String name;
-    private double balance = 0;
-    private double rate = 0.001;
+public class Account implements Serializable{
+
+	private String number;
+	private String name;
+	private double balance = 0;
+	private double rate = 0.001;
+	private Customer customer;
+
 	
-    public Account(Customer customer, String number, String name) {
-        this.customer = customer;
-        this.number = number;
-        this.name = name;
-    }
+	public Account(String number, String name, double rate, Customer customer) {
+            this.number = number;
+            this.name = name;
+            this.rate = rate;
+            this.customer = customer;        
+	}
 
-    public Account(Customer customer, String number, String name, double rate) {
-        this.customer = customer;
-        this.number = number;
-        this.name = name;
-        this.rate = rate;
-    }
+	public void credit(double amount) throws Exception {
+            if(amount > 0){
+                this.balance += amount;
+            }else{
+                throw new Exception("Erreur");
+            }
+	}
 
-    public void credit(double amount) {
+	
+	public void debit(double amount) throws Exception{
+            if(this.balance - amount < 0){
+                throw new Exception("Erreur");
+            }else if(amount < 0){
+                throw new Exception("Erreur");
+            }else{
+                this.balance -= amount;
+            }
+	}
 
-        this.balance += amount;
-    }
+	
+	public static void transfer(double amount, Account source, Account target) throws Exception{
+            if(amount <= 0){
+                throw new Exception("Erreur, il faut augmenter de 0 au moins");
+            }
+            
+            source.debit(amount);
+            target.credit(amount);
+	}
 
-    public void debit(double amount) {
-        if(this.balance - amount < 0)
-            System.out.println("Error");
-        else
-            this.balance -= amount;
-    }
+	public String getNumber() {
+		return this.number;
+	}
 
-    public static void transfer(double amount, Account source, Account target) {
-        source.debit(amount);
-        target.credit(amount);
-    }
+	public void setNumber(String number) {
+		this.number = number;
+	}
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-    
-    public double getBalance(){
-        return balance;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public void setRate(double rate) {
-        this.rate = rate;
-    }
-    
-    public double getRate(){
-        return rate;
-    }
-  
-    public Customer getCustomer() {
-        return customer;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+	public double getBalance() {
+		return this.balance;
+	}
 
-    public String getNumber() {
-        return number;
-    }
+	public double getRate() {
+		return this.rate;
+	}
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
+	public void setRate(double rate) {
+		this.rate = rate;
+	}
 
-    public String getName() {
-        return name;
-    }
+        public Customer getCustomer() {
+            return customer;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        public void setCustomer(Customer customer) {
+            this.customer = customer;
+        }
 
 }

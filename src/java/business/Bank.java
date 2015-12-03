@@ -1,5 +1,6 @@
 package business;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,67 +11,84 @@ import java.util.Map;
  *
  * @author Francois Gatherat <francois.gatherat@he-arc.ch>
  */
-public class Bank {
+public class Bank implements Serializable {
+
+    private HashMap<Integer, Customer> customers;
+    private HashMap<String, Account> accounts;
     private int number;
     private String name;
-    private ArrayList<Customer> listCustomer;
-    private ArrayList<Account> listAccount;
+
     
-    public Bank(int number, String name){
+    public Bank(int number, String name) {
         this.number = number;
         this.name = name;
-        listAccount = new ArrayList<Account>();
-        listCustomer = new ArrayList<Customer> ();
+        this.customers = new HashMap<>();
+        this.accounts = new HashMap<>();
     }
+
     
     public Account getAccountByNumber(String number) {
-        for(int i=0; i<listAccount.size();i++){
-            if(listAccount.get(i).getNumber() == number) {
-                return listAccount.get(i);
-            }
+        return this.accounts.get(number);
+    }
+
+    
+    public Customer getCustomerByNumber(int number) {
+        return this.customers.get(number);
+    }
+
+    
+    public Customer addCustomer(int number, String fn, String ln) throws Exception {
+        Customer cust = null;
+
+        if (!customers.containsKey(number)) {
+            cust = new Customer(number, fn, ln);
+            customers.put(number, cust);
+        } else {
+            throw new Exception("Erreur d'ajout");
         }
-        return null;
+
+        return cust;
     }
     
-    public Customer getCustomerByNumber (int number) {
-        Customer customer = listCustomer.get(number);
-        
-        return customer;
-    }
-    
-    public Customer addCustomer(int number, String fn, String ln){
-        Customer customer = new Customer (number, fn, ln);
-        
-        listCustomer.add(customer);
-        
-        return customer;
-    }
-    
-    public void addAccount (String number, String name, double rate, Customer customer) {
-        Account account = new Account(customer, number, name, rate);
-        
-        listAccount.add(account);
-    }
-    
-    public Map<Integer, Customer> getCustomers(){
-       Map<Integer, Customer> backList = new HashMap<>();       
-       
-       for(Customer c : listCustomer) {
-           backList.put(c.getNumber(), c);
-       }
-       
-        return backList;
-    }
-    
-    public List<Account> getAccountByCustomer(int number) {
-        List<Account> listCompte = new ArrayList<>();
-        
-        for(Account compte : listAccount) {
-            if(compte.getCustomer().getNumber() == number) {
-                listCompte.add(compte);
-            }
+    public Account addAccount(String number, String name, double rate, Customer customer) throws Exception {
+        Account acc = null;
+
+        if (!customers.containsValue(customer)) {
+            throw new Exception("Erreur");
         }
-        return listCompte;
+
+        if (!accounts.containsKey(number)) {
+            acc = customer.addAccount(number, name, rate);
+            this.accounts.put(number, acc);
+        } else {
+            throw new Exception("Le compte existe déjà");
+        }
+
+        return acc;
     }
-        
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public HashMap<Integer, Customer> getCustomers() {
+        return customers;
+    }
+
+    public HashMap<String, Account> getAccounts() {
+        return accounts;
+    }
+
 }

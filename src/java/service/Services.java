@@ -24,23 +24,29 @@ public class Services implements Serializable{
     public Services(){
         bank = new Bank(1, "Raiffeisen Neuchâtel");
         
-        Customer cust = bank.addCustomer(1, "Jean", "Dupont");
-        
-        bank.addAccount("1", "Salaire", 0.001, cust);
-        bank.addAccount("2", "Impots", 0.002, cust);
-        
-        cust = bank.addCustomer(2, "Marie", "Dupont");
-        bank.addAccount("3", "Epargne", 0.002, cust);
-        bank.addAccount("4", "Salaire", 0.001, cust);
+        try{
+            Customer cust = bank.addCustomer(1, "Jean", "Dupont");
+
+            bank.addAccount("1", "Salaire", 0.001, cust);
+            bank.addAccount("2", "Impots", 0.002, cust);
+
+            cust = bank.addCustomer(2, "Marie", "Dupont");
+            bank.addAccount("3", "Epargne", 0.002, cust);
+            bank.addAccount("4", "Salaire", 0.001, cust);
+        }catch(Exception e){
+            // Shouldn't happen.
+            e.printStackTrace();
+        }
     }
     
-    /**
+   /**
      * Dit à la banque de créer un nouveau client.
      * @param number Le numéro unique du client
      * @param fn Le prénom du client
      * @param ln Le nom du client
+     * @throws ch.hearc.ig.odi.customeraccount.exception.DuplicateElementException Exception levée si le numéro est déjà utilisé pour un client.
      */
-    public void saveCustomer(Integer number, String fn, String ln){
+    public void saveCustomer(Integer number, String fn, String ln) throws Exception{
         bank.addCustomer(number, fn, ln);
     }
 
@@ -69,29 +75,4 @@ public class Services implements Serializable{
     public List<Customer> getCustomersList(){
         return new ArrayList(getCustomers().values());
     }
-    
-    public List<Account> getAccountByCustomer () {
-        List account = new ArrayList<>();
-        int numberCustomer = returnClientEdit().getNumber();
-        account = bank.getAccountByCustomer(numberCustomer);
-        
-        return account;
-    }
-    
-    public void clientEdit (Customer cust){
-        clientEdit = new Customer(cust.getNumber(), cust.getFirstName(), cust.getLastName());
-    }
-    
-    public Customer returnClientEdit () {
-        return clientEdit;
-    }
-    
-    public void compteEdit (Customer cust, Account compte) {
-        compteEdit = new Account(cust, compte.getNumber(), compte.getName(), compte.getRate());
-    }
-    
-    public Account returnCompteEdit () {
-        return compteEdit;
-    }
-    
 }

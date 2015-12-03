@@ -28,10 +28,12 @@ and open the template in the editor.
                 <br></br> 
                 <br></br>
                 <h:commandButton id="btAdd" type="submit" value="#{msg['btAddClient']}" action="#{customerBean.add}"/>
-                <h:commandButton id="btRenit" type="submit" value="#{msg['btRenit']}" action="renitialiserAjout"/>
+                <h:commandButton id="btRenit" type="reset" value="#{msg['btRenit']}" action="renitialiserAjout"/>
+            </h:form>
                 <br></br>
                 <br></br>
-                <h:commandButton id="btAnnuler" type="submit" value="#{msg['btAnnuler']}" action="annulerAjout"/>
+            <h:form> 
+                <h:commandButton id="btAnnuler" type="submit" value="#{msg['btAnnuler']}" action="annulerAjout"/> 
             </h:form>
         </h:body>
    </f:view>

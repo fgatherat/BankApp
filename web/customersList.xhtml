@@ -10,6 +10,8 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
    <f:view>
     <h:head>
+        <f:loadBundle basename="langue.message" var="msg" />
+        
         <title>Bank App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
@@ -39,15 +41,16 @@ and open the template in the editor.
                         <f:facet name="header">
                             <h:outputText value="#{msg['nom']}" />
                         </f:facet>
-                        <h:outputText id="lastname" value="#{customer.lastName}"/>
+                        <h:commandLink id="lastname" value="#{customer.lastName}" action="#{detailsClient.showCustomer(customer)}" />
                     </h:column>
                     
                 </h:dataTable>
                 <br></br>
-                <h:commandButton id="addCustomer" value="#{msg['addClient']}" action="createCustomer"/>
+                <h:commandButton id="addCustomer" value="#{msg['addClient']}" action="createCustomer" />
             </h:form>
        
         
     </h:body>
   </f:view>
 </html>
+

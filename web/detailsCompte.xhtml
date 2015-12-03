@@ -20,13 +20,13 @@ and open the template in the editor.
         
          <h:panelGrid border="1" columns="2" >
             <h:outputLabel value="#{msg['numero']}" />
-            <h:outputText value="#{detailsCompte.number}" />
+            <h:outputText value="#{detailsCompte.account.number}" />
             <h:outputLabel value="#{msg['nom']}" />
-            <h:outputText value="#{detailsCompte.name}" />
+            <h:outputText value="#{detailsCompte.account.name}" />
             <h:outputLabel value="#{msg['balance']}" />
-            <h:outputText value="#{detailsCompte.balance}" />
+            <h:outputText value="#{detailsCompte.account.balance}" />
             <h:outputLabel value="#{msg['taux']}" />
-            <h:outputText value="#{detailsCompte.rate}" />
+            <h:outputText value="#{detailsCompte.account.rate}" />
         </h:panelGrid>
         
         <h:form>

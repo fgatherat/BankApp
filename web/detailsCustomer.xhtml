@@ -20,16 +20,16 @@ and open the template in the editor.
         
         <h:panelGrid border="1" columns="2" >
             <h:outputLabel value="#{msg['numero']}" />
-            <h:outputText value="#{detailsClient.number}" />
+            <h:outputText value="#{detailsClient.customer.number}" />
             <h:outputLabel value="#{msg['nom']}" />
-            <h:outputText value="#{detailsClient.lastName}" />
+            <h:outputText value="#{detailsClient.customer.lastName}" />
             <h:outputLabel value="#{msg['prenom']}" />
-            <h:outputText value="#{detailsClient.firstName}" />
+            <h:outputText value="#{detailsClient.customer.firstName}" />
         </h:panelGrid>
         
         
          <h:form>
-             <h:dataTable id="listeCompte" var="compte" value="#{detailsClient.accountDM}">
+             <h:dataTable id="listeCompte" var="compte" value="#{detailsClient.accounts}">
                     
                     <h:column>
                         <f:facet name="header">
@@ -42,7 +42,7 @@ and open the template in the editor.
                         <f:facet name="header">
                             <h:outputText value="#{msg['nomCompte']}" />
                         </f:facet>
-                        <h:commandLink id="name" value="#{compte.name}" action="#{detailsClient.detailsCompte(detailsClient.number, compte.number)}" />
+                        <h:commandLink id="name" value="#{compte.name}" action="#{detailsCompte.showAccount(compte)}" />
                     </h:column>
                     
                  <h:column>

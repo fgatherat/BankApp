@@ -21,53 +21,28 @@ import service.Services;
 @Named(value="detailsCompte")
 @SessionScoped
 public class DetailsCompteBean implements Serializable{
-    private String number;
-    private String name;
-    private double balance;
-    private double rate;
+    private Account account;
 
     @Inject Services services;
     public DetailsCompteBean(){}
     
-    public String getNumber() {
-        return number;
+  public String showAccount(Account account){
+        if(account != null){
+            this.account = account;
+            return "show";
+        }else{
+            this.account = null;
+            return "error";
+        }
+            
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public Account getAccount() {
+        return account;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public double getRate() {
-        return rate;
-    }
-
-    public void setRate(double rate) {
-        this.rate = rate;
-    }
-    
-    @PostConstruct
-    public void detailCompte () {
-        Account compte = services.returnCompteEdit();
-        setNumber(compte.getNumber());
-        setName(compte.getName());
-        setBalance(compte.getBalance());
-        setRate(compte.getRate());
-    }
+    public void setAccount(Account account) {
+        this.account = account;
+    }  
     
 }
